@@ -1,0 +1,69 @@
+{% extends "myblog/layout.html" %}
+
+{% block content %}
+
+    <h1>Freeboard <sup>powered by Django</sup></h1>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-info">
+                    <ul>
+                    <li>id, title, author, date를 표시</li>
+                    <li>검색기능 구현</li>
+                    <li>네이버 지도 구현</li>
+                    </ul>
+                </div>
+
+                <a href="{% url "myblog:post_new" %}" class="btn btn-primary pull-right">New Post</a>
+
+                <p>
+                <form action="" method="get">
+                    <input type="text" name="q" value="{{ q }}" />
+                    <input type="submit" value="검색" class="btn btn-primary" />
+                </form>
+                </p>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>author</th>
+                            <th>updated_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                            <tr>
+                                <td>{{ post.id }}</td>
+                                <td>
+                                    <a href="{% url "myblog:post_detail" post.id %}">{{ post.title }}</a>
+                                    {% for tag in post.tag_set.all %}
+                                        <span class="label label-info">{{ tag.name }}</span>
+                                    {% endfor %}
+                                </td>
+                                <td><small>by {{ post.author }}</small></td>
+                                <td><small>at {{ post.updated_at }}</small></td>
+{#                                <td>#}
+{#                                    {{ post.comment_set.all }}#}
+{#                                    {{ post.tag_set.all }}#}
+{#                                </td>#}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+
