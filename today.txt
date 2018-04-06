@@ -1,2 +1,0 @@
-3/28 myblog, accounts ¸¸µë
-	manage.py, settings.py, ulrs.py ÀÔ·Â
