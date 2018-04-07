@@ -19,13 +19,13 @@ Licence URI: http://www.os-templates.com/template-terms
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay" style="background-image:url({% static "images/demo/backgrounds/01.png" %});">
+<div class="bgded overlay" style="background-image:url({% static "images/layout/02.png" %});">
   <!-- ################################################################################################ -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear">
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="index.html">Tay's</a></h1>
+        <h1><a href="{% url "root" %}">Tay's</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
@@ -35,20 +35,17 @@ Licence URI: http://www.os-templates.com/template-terms
               <li><a href="#">Movie</a></li>
               <li><a href="#">Music</a></li>
               <li><a href="#">Journey</a></li>
-
-{#              <li><a href="sidebar-right.html">Sidebar Right</a></li>#}
-{#              <li><a href="basic-grid.html">Basic Grid</a></li>#}
             </ul>
           </li>
           <li><a class="drop" href="#">Project</a>
             <ul>
-              <li><a class="drop" href="{% url "myblog:post_list" %}">Freeboard</a>
+              <li><a class="drop" href="#">Freeboard</a>
                 <ul>
                   <li><a href="{% url "myblog:post_list" %}">자유게시판</a></li>
                   <li><a href="#">익명게시판</a></li>
                 </ul>
               </li>
-              <li><a href="#">######</a></li>
+              <li><a href="{% url "cover:index" %}">Cover Generator</a></li>
             </ul>
           </li>
                 {% if not user.is_authenticated %}
@@ -66,6 +63,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
 
     {% block layout %}
+{#        각 앱의 레이아웃 관리#}
     {% endblock %}
 
     <!-- ################################################################################################ -->
@@ -73,40 +71,39 @@ Licence URI: http://www.os-templates.com/template-terms
   <footer id="footer" class="hoc clear">
     <!-- ################################################################################################ -->
     <div class="one_quarter first">
-      <h6 class="title">Nisl blandit velit</h6>
+      <h6 class="title">Tay's</h6>
       <address class="btmspace-15">
-      Company Name<br>
-      Street Name &amp; Number<br>
-      Town<br>
-      Postcode/Zip
+      회사가 생기면<br>
+      이곳에<br>
+      주소를 쓸테야<br>
       </address>
       <ul class="nospace">
-        <li><span class="fa fa-phone"></span> +00 (123) 456 7890</li>
-        <li><span class="fa fa-envelope-o"></span> info@domain.com</li>
+        <li><span class="fa fa-github"></span> kth3276</li>
+        <li><span class="fa fa-instagram"></span> taytay_kim</li>
+{#        <li><span class="fa fa-phone"></span> +00 (123) 456 7890</li>#}
+        <li><span class="fa fa-envelope-o"></span> kth3276@gmail.com</li>
       </ul>
     </div>
     <div class="one_quarter">
-      <h6 class="title">Dignissim vivamus</h6>
+      <h6 class="title">About</h6>
       <article>
-        <h2 class="nospace font-x1"><a href="#">Finibus non dictum</a></h2>
-        <time class="font-xs" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-        <p>Vel feugiat dolor sed rhoncus lacus integer vestibulum urna nec lorem pellentesque et laoreet lectus mollis.</p>
+{#        <time class="font-xs" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>#}
+        <p>취미삼아 개발하는 사람입니다.</p>
+        <p> 고수가 되고 싶은 마음이 큽니다.</p>
+        <p>도와주세요 ㅎㅎㅎ</p>
       </article>
     </div>
     <div class="one_quarter">
-      <h6 class="title">Ultricies augue</h6>
+      <h6 class="title">Powered by</h6>
       <ul class="nospace linklist">
-        <li><a href="#">Fringilla aliquam nullam</a></li>
-        <li><a href="#">Sollicitudin eros ipsum</a></li>
-        <li><a href="#">Mattis leo ullamcorper quis</a></li>
-        <li><a href="#">Morbi eget ligula diam nulla</a></li>
-        <li><a href="#">Gravida et turpis ac mattis</a></li>
+        <li><a href="https://www.python.org/">Python3</a></li>
+        <li><a href="https://docs.djangoproject.com/en/2.0/releases/1.10.5/">Django 1.10.5</a></li>
+        <li><a href="http://www.os-templates.com/">OS Templates</a></li>
       </ul>
     </div>
     <div class="one_quarter">
-      <h6 class="title">Cras in scelerisque mauris suspendisse</h6>
-      <p>Vel cursus non rhoncus a orci in eget eros convallis commodo felis sit amet tristique.</p>
-      <p>Turpis eget lacinia pellentesque lectus fusce malesuada lacus.</p>
+      <h6 class="title">AH</h6>
+        <p>AH Halmal upda</p>
     </div>
     <!-- ################################################################################################ -->
   </footer>
@@ -124,7 +121,7 @@ Licence URI: http://www.os-templates.com/template-terms
       <div class="clear">
         <input class="one_third first" type="text" value="" placeholder="Name" required>
         <input class="one_third" type="email" value="" placeholder="Email" required>
-        <button class="one_third" type="submit" title="Sign Up">Sign Up</button>
+        <button class="one_third" type="submit" title="Sign Up">클릭해도 소용없음ㅎ</button>
       </div>
     </form>
     <!-- ################################################################################################ -->
