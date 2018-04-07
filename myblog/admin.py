@@ -5,13 +5,13 @@ from .models import Post, Comment, Tag
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'tag_list', 'content_size', 'status',
+    list_display = ['id', 'title', 'tag_list', 'content_size',
                     'created_at', 'updated_at']
     actions = ['make_draft', 'make_published']
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.prefetch_related('tag_set')
+    # def get_queryset(self, request):
+    #     qs = super().get_queryset(request)
+    #     return qs.prefetch_related('tag_set')
 
     def tag_list(request, post):
         return ', '.join(tag.name for tag in post.tag_set.all()) # list comprehension
