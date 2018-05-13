@@ -3,3 +3,5 @@
 gunicorn
 uwsgi
 psycopg2
+django-storages
+azure-storage==0.20.0

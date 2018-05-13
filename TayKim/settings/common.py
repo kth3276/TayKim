@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
+    'disqus',
 
     'django_extensions',
     'imagekit',
@@ -57,6 +58,11 @@ INSTALLED_APPS = [
     'shop',
     'cover',
 ]
+
+# 디스커스 관련
+DISQUS_WEBSITE_SHORTNAME = 'tays-1'
+SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
