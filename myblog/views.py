@@ -2,6 +2,8 @@
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
 from .forms import PostForm
 
@@ -34,12 +36,15 @@ def post_detail(request, id):
     })
 
 
+@login_required()
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save()
-            messages.success(request, '새 포스팅을 저장했습니다.')
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            # messages.success(request, '새 포스팅을 저장했습니다.')
             return redirect(post) # post.get_absolute_url() => post detail
     else:
         form = PostForm()
@@ -48,6 +53,7 @@ def post_new(request):
     })
 
 
+@login_required()
 def post_edit(request, id):
     post = get_object_or_404(Post, id=id)
     if request.method == 'POST':

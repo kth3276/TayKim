@@ -3,6 +3,7 @@ import re
 from django.forms import ValidationError
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 # from imagekit.models import ImageSpecField
 # from imagekit.processors import Thumbnail
@@ -14,29 +15,12 @@ def lnglat_validator(value):
 
 
 class Post(models.Model):
-    # STATUS_CHOICES = (
-    #     ('d', 'Draft'),
-    #     ('p', 'Published'),
-    #     ('w', 'Withdrawn'),
-    # )
-
-    # author = models.CharField(max_length=20)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=100, verbose_name='제목',
-        help_text='포스팅 제목을 입력해주세요. 최대 100자 내외.')  # 길이 제한이 있는 문자열
-    # choices = (
-    #     ('제목1', '제목1 레이블'),  # 저장될 값, UI에 보여질 레이블
-    #     ('제목2', '제목2 레이블'),
-    #     ('제목3', '제목3 레이블'),
-    # )
+        help_text='포스팅 제목을 입력해주세요. 최대 100자 내외.')
     content = models.TextField(verbose_name='내용')  # 길이 제한이 없는 문자열
     photo = models.ImageField(blank=True, upload_to='blog/post/%Y/%m/%d')
-    # post_detail.html에서 직접 처리해줌
-    # photo_thumbnail = ImageSpecField(source='photo',
-    #         processors=[Thumbnail(300, 300)],
-    #         format='JPEG',
-    #         options={'quality': 60})
-    # tags = models.CharField(max_length=100, blank=True)
+    tags = models.CharField(max_length=100, blank=True, verbose_name='테그')
     lnglat = models.CharField(max_length=50, verbose_name='위치',
         validators=[lnglat_validator],  # 함수 호출이 아닌 함수 자체 넘김
         blank=True, help_text='위도/경도 포맷으로 입력')
@@ -49,7 +33,8 @@ class Post(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return self.title
+        return '%s by %s' % (self.title, self.user)
+        # return self.title
 
 # Create, Update가 성공시 넘어가는 url
     def get_absolute_url(self):
